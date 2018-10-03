@@ -1,0 +1,53 @@
+﻿@using Fountain.Helper
+@model Fountain.DTO.Error.GeneralResponseDto
+<div class="col-md-1"></div>
+@if (@Model.Type == MessageHelper.Basari)
+{
+    <div class="col-md-10 note note-success" style="background-color: #40D47E; padding-top: 35px !important; border-color: #3C763D; color:antiquewhite">
+        <div class="row">
+            <div class="col-md-2" style="text-align: center">
+                <span class="glyphicon glyphicon-ok" style="font-size: 75px !important"> </span>
+            </div>
+            <div class="col-md-8" >
+                <h3 style="margin-top: -15px; font-weight: bold">@Model.Header</h3>
+                <span>@Model.Message</span>
+            </div>
+            <div class="col-md-2">
+            
+            </div>
+       
+        </div>
+   
+    </div>
+}
+@if (@Model.Type == MessageHelper.Hata)
+{
+    <div class="col-md-10 note note-warning" style="background-color: #EA6153; padding-top: 35px !important; border-color: #354B60; color:antiquewhite">
+        <div class="row">
+            <div class="col-md-2" style="text-align: center">
+                <span class="glyphicon glyphicon-remove" style="font-size: 75px !important"> </span>
+            </div>
+            <div class="col-md-8">
+                <h3 style="margin-top: -15px; font-weight: bold">@Model.Header</h3>
+                <span>@Model.Message</span>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+
+        </div>
+
+    </div>
+}
+<div class="col-md-1"></div>
+
+<script>
+    $(function() {
+
+        setTimeout(function() {
+            window.location.href = "@Model.Link";
+
+        }, 4000);
+    });
+
+</script>

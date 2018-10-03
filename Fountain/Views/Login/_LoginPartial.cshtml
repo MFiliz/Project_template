@@ -1,0 +1,102 @@
+﻿@model Fountain.DTO.Login.LoginDto
+
+<link href="~/assets/global/plugins/icheck/skins/square/_all.css" rel="stylesheet" />
+<link href="~/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" />
+@*<link href="~/assets/global/plugins/icheck/skins/square/red.css" rel="stylesheet" />*@
+<script src="~/assets/global/plugins/icheck/icheck.js"></script>
+<script src="~/assets/global/plugins/bootstrap-toastr/toastr.min.js"></script>
+
+
+@using (Ajax.BeginForm("Login", "Login", new AjaxOptions {UpdateTargetId = "divLoginForm", OnSuccess = "RedirectToHome"}))
+{
+    <h3 class="form-title">Giriş</h3>
+    <div class="alert alert-danger display-hide">
+        <button class="close" data-close="alert" id="toastr"></button>
+        <span>
+            Geçerli bir E-Posta / Şifre giriniz
+        </span>
+    </div>
+    <div class="form-group">
+        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+        <label class="control-label visible-ie8 visible-ie9">E-Posta</label>
+        <div class="input-icon">
+            <i class="fa fa-user"></i>
+            @Html.TextBoxFor(x => x.EMail, new {@class = "form-control placeholder-no-fix", autocomplete = "off", placeholder = "E-Posta"})
+        
+            @*<input class="" type="text" autocomplete="off" placeholder="E-Posta" name="username" />*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label visible-ie8 visible-ie9">Şifre</label>
+        <div class="input-icon">
+            <i class="fa fa-lock"></i>
+            @Html.PasswordFor(x => x.Password, new {@class = "form-control placeholder-no-fix", autocomplete = "off", placeholder = "Şifre"})
+          
+            @*<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Şifre" name="password" />*@
+        </div>
+    </div>
+    <div class="form-actions">
+        @*<label class="checkbox">
+            
+            @Html.CheckBoxFor(x => x.RememberMe, new {data_checkbox = "false"})
+            @Html.LabelFor(x => x.RememberMe, "Beni Hatırla")
+            @*<input type="checkbox" id="remember" name="remember" value="1" data-checkbox="false" /> Beni Hatırla
+        </label>*@
+        <button type="submit" id="SubmitButton" class="btn  pull-right">
+            Giriş <i class="m-icon-swapright m-icon-white"></i>
+        </button>
+    </div>
+
+    <div class="forget-password">
+        <h4> Şifremi <b><a id="forget-password" >
+                            unuttum.
+                        </a></b>
+        </h4>
+      
+    </div>
+}
+
+<div style="display: none">
+    
+    @*Hata Div'i. Toastr kullanıldıgı için saklandı*@
+   
+    @Html.ValidationMessageFor(x => x.EMail)
+    @Html.ValidationMessageFor(x => x.Password)
+    @Html.ValidationSummary()
+</div>
+
+<script src="~/Scripts/customscripts.js"></script>
+
+<script>
+    $("#forget-password").on("click", function() {
+
+        $("#divLoginForm").load("/Login/GetForgotPasswordPartial");
+    });
+    $("#SubmitButton").on("click", function () {
+
+        StartLoading();
+    });
+
+
+
+    $(function() {
+
+        $("#RememberMe").iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green'
+
+        });
+
+
+    });
+
+    function RedirectToHome(resp) {
+        StopLoading();
+        if (resp.url != null) {
+            window.location.href = resp.url;
+        }
+        else {
+            toastr.error("Kullanıcı Bilgileri Hatalı", "Hata");
+        }
+    };
+</script>

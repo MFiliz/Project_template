@@ -1,0 +1,3 @@
+D:\Work2\TFS\WebProject\BayiElektrikProjesiTest\Fountain\Fountain.Repository\obj\Release\Fountain.Repository.csprojResolveAssemblyReference.cache
+D:\Work2\TFS\WebProject\BayiElektrikProjesiTest\Fountain\Fountain.Repository\obj\Release\Fountain.Repository.Migrations.CanliGecis.resources
+D:\Work2\TFS\WebProject\BayiElektrikProjesiTest\Fountain\Fountain.Repository\obj\Release\Fountain.Repository.csproj.GenerateResource.Cache

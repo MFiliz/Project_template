@@ -1,0 +1,192 @@
+﻿@using Fountain.Helper
+@model Fountain.DTO.Login.MenuDto
+
+
+<li class="start active">
+    <a href="/Home/Index">
+        <i class="icon-home"></i>
+        <span class="title">Ana Sayfa</span>
+    </a>
+</li>
+<li class="start">
+    
+</li>
+@if (Model.Roles.Contains(RoleHelper.SystemAdmin))
+{
+    <li>
+        <a href="#">
+            <i class="icon-graph"></i>
+            <span class="title">Admin Menüsü</span>
+        </a>
+        <ul class="sub-menu">
+            <li>
+                <a href="sth">
+                    <i class="icon-note"></i>
+                    <span class="title">Duyurular</span>
+                </a>
+            </li>
+            <li>
+                <a href="sth">
+                    <i class="icon-paper-clip"></i>
+                    <span class="title"> Fiyat</span>
+                </a>
+            </li>
+            <li>
+                <a href="sth">
+                    <i class="icon-paper-clip"></i>
+                    <span class="title"> Fiyatı</span>
+                </a>
+            </li>
+            <li>
+                    <a href="sth">
+                        <i class="icon-refresh"></i>
+                        <span class="title">Onay Durum Güncelleme</span>
+                    </a>
+                </li>
+            <li class="last">
+                <a href="sth">
+                    <i class="icon-bulb"></i>
+                    <span class="title"> Takvimi</span>
+                </a>
+            </li>
+       
+        </ul>
+    </li>
+}
+
+
+
+<li>
+    <a href="/ChangePassword/Index">
+        <i class="icon-bubble"></i>
+        <span class="title">Şifre Değiştirme</span>
+    </a>
+</li>
+@if (Model.Roles.Contains(RoleHelper.AltBayiAdmin) || Model.Roles.Contains(RoleHelper.BayiAdmin))
+{
+    <li>
+        <a href="">
+            <i class="icon-puzzle"></i>
+            <span class="title">Bilgileri</span>
+        </a>
+    </li>
+}
+
+@if (Model.Roles.Contains(RoleHelper.Satis) || Model.Roles.Contains(RoleHelper.BayiAdmin) || Model.Roles.Contains(RoleHelper.BayiMember) || Model.Roles.Contains(RoleHelper.SystemAdmin))
+{
+    if (!Model.Roles.Contains(RoleHelper.Operasyon) || Model.Roles.Contains(RoleHelper.SystemAdmin))
+    {
+        <li>
+            <a href="sth">
+                <i class="icon-users"></i>
+                <span class="title">Abonelik</span>
+            </a>
+            <ul class="sub-menu">
+                @*<li>
+                        <a href="/Customer/Index">
+                            <i class="icon-users"></i>
+                            <span class="title">Abone Listesi</span>
+                        </a>
+                    </li>*@
+                <li>
+                    <a href="sth">
+                        <i class="icon-users"></i>
+                        <span class="title">Yeni Abonelik</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    }
+
+}
+
+       
+        @if (Model.Roles.Contains(RoleHelper.BayiAdmin) || Model.Roles.Contains(RoleHelper.BayiMember))
+        {
+            if (!Model.Roles.Contains(RoleHelper.Operasyon) && !Model.Roles.Contains(RoleHelper.Satis))
+            {
+                <li>
+                    <a href="#">
+                        <i class="icon-graph"></i>
+                        <span class="title">Menüsü</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="sth">
+                                <i class="icon-users"></i>
+                                <span class="title">Abone Bilgileri</span>
+                            </a>
+                        </li>
+                        <li class="last">
+                            <a href="sth">
+                                <i class="icon-list"></i>
+                                <span class="title">Sayaç Listesi</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+
+        }
+        @if (Model.Roles.Contains(RoleHelper.SystemAdmin))
+        {
+            <li>
+                <a href="#">
+                    <i class="icon-graph"></i>
+                    <span class="title">Menüsü</span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="sth">
+                            <i class="icon-users"></i>
+                            <span class="title">Abone Bilgileri</span>
+                        </a>
+                    </li>
+                    <li class="last">
+                        <a href="sth">
+                            <i class="icon-list"></i>
+                            <span class="title">Sayaç Listesi</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        }
+
+        @if (Model.Roles.Contains(RoleHelper.Satis))
+        {
+            <li class="last">
+                <a href="#">
+                    <i class="icon-graph"></i>
+                    <span class="title">Satış Temsilcisi Menüsü</span>
+                </a>
+                <ul class="sub-menu">
+                  
+                    <li class="last">
+                        <a href="sth">
+                            <i class="icon-list"></i>
+                            <span class="title">Sayaç Listesi</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        }
+
+        @if (Model.Roles.Contains(RoleHelper.Operasyon))
+        {
+            <li class="last">
+                <a href="#">
+                    <i class="icon-graph"></i>
+                    <span class="title">Operasyon Menüsü</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="last">
+                        <a href="sth">
+                            <i class="icon-list"></i>
+                            <span class="title">Sayaç Listesi</span>
+                        </a>
+                    </li>
+
+                  
+                </ul>
+            </li>
+        }
